@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>players</title>
+    <title>Players</title>
 </head>
 <body>
-    <h1>players Table</h1>
+    <h1>Players Table</h1>
     <h2>Records the details of registered players</h2>
     <a href="index.html">back to index</a><br>
     <a href="playerItemPurchases.html">playerItemsPurchases section</a><br>
@@ -18,22 +18,17 @@
     <!-- pk player id, fname, lname, vBuckQty, level, fk teamID, playerAlive -->
     <form action="" method="POST">
         <!-- pk will be auto generated -->
-        <label for="">ADD PLAYER:</label><br>
+        <label for="">ADD PLAYER:</label>
         <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname"><br>
+        <input type="text" id="fname" name="fname">
         <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname"><br>
+        <input type="text" id="lname" name="lname">
         <label for="vBuckQty">VBucks:</label>
-        <input type="number" id="vBuckQty" name="vBuckQty"><br>
+        <input type="number" id="vBuckQty" name="vBuckQty">
         <label for="level">Level:</label>
-        <input type="number" id="level" name="level"><br>
+        <input type="number" id="level" name="level">
         <label for="teamID">Team:</label>
-        <input type="number" id="teamID" name="teamID"><br>
-        <label for="playerAlive">Still kickin'?:</label>
-        <input type="radio" id="playerAlive-true" name="playerAlive-true">
-        <label for="playerAlive-true">Yes</label>
-        <input type="radio" id="playerAlive-false" name="playerAlive-false">
-        <label for="playerAlive-false">No</label><br>
+        <input type="number" id="teamID" name="teamID">
         <input type="submit" value="SUBMIT PLAYER">
     </form><br>
 
@@ -42,7 +37,7 @@
         <label for="">UPDATE PLAYER:</label><br>
         <label for="playerID">Players ID:</label>
         <input type="number" name="playerID" id="playerID"><br>
-        <label for="fname">First name:</label>
+        <label for="fname">First Name:</label>
         <input type="text" id="fname" name="fname"><br>
         <label for="lname">Last name:</label>
         <input type="text" id="lname" name="lname"><br>
@@ -58,6 +53,26 @@
         <input type="radio" id="playerAlive-false" name="playerAlive-false">
         <label for="playerAlive-false">No</label><br>
         <input type="submit" value="SUBMIT CHANGES">
-    </form>
+    </form><br>
+    <table>
+        <tr>
+            <th>Player ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>vBucks</th>
+            <th>Level</th>
+            <th>Team</th>
+            <th>Still kickin'?</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Lucifer</td>
+            <td>Morningstart</td>
+            <td>10000</td>
+            <td>99</td>
+            
+        </tr>
+
+    </table>
 </body>
 </html>
