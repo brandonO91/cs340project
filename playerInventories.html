@@ -14,29 +14,29 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="players.html">players </a>
+          <a class="nav-link" href="players.html">Players</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="playerItemPurchases.html">playerItemsPurchases </a>
+          <a class="nav-link" href="playerItemPurchases.html">Player Item Purchases</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="itemShops.html">itemsShop </a>
+          <a class="nav-link" href="itemShops.html">Item Shops</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="teams.html">teams </a>
+          <a class="nav-link" href="teams.html">Teams</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="playerInventories.html">playerInventories </a>
+          <a class="nav-link" href="playerInventories.html">Player Inventories</a>
         </li>
       </ul>
     </div>
-    <div class="company-logo"><img src="/images/logo.PNG" width="200" height="30">
+    <div class="company-logo"><img src="/images/logo.PNG" alt="FORTNITE" width="200" height="30">
     </div>
   </nav>
 
 
     <h1>Player Inventories Table</h1>
-    <h2>Records the players inventory for the current game</h2>
+    <h2>Records the players inventory for the current game - If created will update:</h2>
 
 <form action="" method="POST">
         <label for="">PLAYER INVENTORY:</label><br>
@@ -62,6 +62,51 @@
         <input type="number" id="xpPoints" name="xpPoints"><br>
         <input type="submit" value="SUBMIT CHANGES">
     </form>
+
+    <table>
+      <tr>
+          <th>Player ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Health</th>
+          <th>Med Kit</th>
+          <th>Shield</th>
+          <th>Shield Potion</th>
+          <th>Shotgun</th>
+          <th>Shotgun Ammo</th>
+          <th>Rifle</th>
+          <th>Rifle Ammo</th>
+          <th>XP Points</th>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Lucifer</td>
+          <td>Morningstar</td>
+          <td>100</td>
+          <td>0</td>
+          <td>100</td>
+          <td>1</td>
+          <td>100</td>
+          <td>10000</td>
+          <td>100</td>
+          <td>10000</td>
+          <td>1000000</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Lachlan</td>
+          <td>Giles</td>
+          <td>50000</td>
+          <td>50</td>
+          <td>1</td>
+          <td>50</td>
+          <td>1</td>
+          <td>0</td>
+          <td>50</td>
+          <td>1</td>
+          <td>100</td>
+      </tr>
+  </table><br>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
