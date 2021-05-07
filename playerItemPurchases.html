@@ -4,17 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css" type="text/css">
     <title>playerItemPurchases table</title>
 </head>
+
 <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="players.html">players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="playerItemPurchases.html">playerItemsPurchases </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="itemShops.html">itemsShop </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="teams.html">teams </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="playerInventories.html">playerInventories </a>
+          </li>
+        </ul>
+      </div>
+      <div class="company-logo"><img src="/images/logo.PNG" width="200" height="30">
+      </div>
+    </nav> 
+
     <h1>playerItemPurchases Table</h1>
     <h2>Will provide an overview of purchases made by each player</h2>
-    <a href="index.html">back to index</a><br>
-    <a href="players.html">players section</a><br>
-    <a href="itemShops.html">itemsShop section</a><br>
-    <a href="teams.html">teams section</a><br>
-    <a href="playerInventories.html">playerInventories section</a><br>
 
     <form action="" method="POST">
         <!-- pk will be auto generated -->
@@ -25,6 +47,9 @@
         <input type="number" id="itemID" name="itemID"><br>
         <input type="submit" value="SUBMIT PURCHASE">
     </form><br>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- will this be updateable from this page or just cascade effect from
     other tables/pages? -->
