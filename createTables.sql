@@ -59,3 +59,22 @@ CREATE TABLE playerInventories(
     PRIMARY KEY ID,
     FOREIGN KEY (playerID) REFERENCES player(playerID)
 ) ENGINE=InnoDB;
+--  POPULATING TABLES WITH DATA  ----------------------------
+INSERT INTO teams (title)
+VALUES
+('TEAM DETECTIVE'),
+('Leg Lockers'),
+('4D');
+
+INSERT INTO players (fname, lname, vBucks, level, teamID, playerAlive)
+VALUES
+('Lucifer', 'Morningstart', NULL, 1000, 1, 1),
+('Jessica', 'Day', 0, 0, 0, 0),
+('Lachlan', 'Giles', 160, 5050, 3, 1);
+
+INSERT INTO itemShops (itemName, itemDescription, vBuckCost)
+VALUES
+('Wood', 'A bundle of...wood', 5),
+('Shot Gun Ammo', 'Fun-munition', 25),
+('Mechanical Parts', 'Things to be a real engineer', 50);
+
