@@ -45,6 +45,8 @@ CREATE TABLE playerItemPurchases(
     FOREIGN KEY (itemID) REFERENCES itemShops(itemID)
 ) ENGINE=InnoDB;
 
+
+
 CREATE TABLE playerInventories(
     ID int AUTO_INCREMENT,
     playerID int NOT NULL,
@@ -77,4 +79,6 @@ VALUES
 ('Wood', 'A bundle of...wood', 5),
 ('Shot Gun Ammo', 'Fun-munition', 25),
 ('Mechanical Parts', 'Things to be a real engineer', 50);
+
+--  Last two tables would populate themselves with auto queries/ajax calls on page?
 
