@@ -5,47 +5,49 @@ DROP TABLE IF EXISTS playerItemPurchases;
 DROP TABLE IF EXISTS playerItemPurchases;
 DROP TABLE IF EXISTS players;
 DROP TABLE IF EXISTS teams;
+
 -- Create Tables
 CREATE TABLE teams(
     teamID int NOT NULL AUTO_INCREMENT,
     title varchar(250) NOT NULL,
-    PRIMARY KEY teamID
+    PRIMARY KEY (teamID)
 ) ENGINE=InnoDB;
 
 --  Since team id cant be null we need to create teams first?
 --  Or if not created then it auto creates and adds to table for teams?
+
 Create Table players(
-    playerID int AUTO_INCREMENT NOT NULL,
-    fname varchar NOT NULL,
-    lname varchar NOT NULL,
-    --  if using default can we use not null then?
-    vBucks int DEFAULT 0,
+  playerID int AUTO_INCREMENT NOT NULL,
+  fname varchar(255) NOT NULL,
+  lname varchar(255) NOT NULL,
+--  if using default can we use not null then?
+  vbucks int NOT NULL DEFAULT '0',
     --  level a reserved word?
-    level int DEFAULT 0,
-    teamID int NOT NULL,
-    playerAlive int DEFAULT 1
-    PRIMARY KEY (playerID)
-    FOREIGN KEY (teamID) REFERENCES teams(teamsID)
+  level int NOT NULL DEFAULT '1',
+  teamID int NOT NULL,
+  playerAlive int DEFAULT 1,
+  PRIMARY KEY (`playerID`),
+  KEY teamID (teamID),
+  CONSTRAINT players_ibfk_1 FOREIGN KEY (teamID) REFERENCES teams (teamID) 
 ) ENGINE=InnoDB;
+
 
 CREATE TABLE itemShops(
     itemID int AUTO_INCREMENT NOT NULL,
     itemName varchar(250) NOT NULL UNIQUE,
     itemDescription varchar(250) NOT NULL,
     vBuckCost int DEFAULT 0,
-    PRIMARY KEY itemID
+    PRIMARY KEY (itemID)
 ) ENGINE=InnoDB;
 
 CREATE TABLE playerItemPurchases(
     ID int AUTO_INCREMENT,
     playerID int NOT NULL,
     itemID int NOT NULL,
-    PRIMARY KEY ID,
-    FOREIGN KEY (playerID) REFERENCES player(playerID),
-    FOREIGN KEY (itemID) REFERENCES itemShops(itemID)
+    PRIMARY KEY (ID),
+    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID),
+    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID)
 ) ENGINE=InnoDB;
-
-
 
 CREATE TABLE playerInventories(
     ID int AUTO_INCREMENT,
@@ -58,15 +60,17 @@ CREATE TABLE playerInventories(
     shotgunAmmo int DEFAULT 0,
     rifelAmmo int DEFAULT 0,
     xpPoints int DEFAULT 0,
-    PRIMARY KEY ID,
-    FOREIGN KEY (playerID) REFERENCES player(playerID)
+    PRIMARY KEY (ID),
+    CONSTRAINT playerInventories_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID)
 ) ENGINE=InnoDB;
+
+
 --  POPULATING TABLES WITH DATA  ----------------------------
-INSERT INTO teams (title)
+INSERT INTO teams (teamID, title)
 VALUES
-('TEAM DETECTIVE'),
-('Leg Lockers'),
-('4D');
+(0, 'TEAM DETECTIVE'),
+(1, 'Leg Lockers'),
+(3, '4D');
 
 INSERT INTO players (fname, lname, vBucks, level, teamID, playerAlive)
 VALUES
