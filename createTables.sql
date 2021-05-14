@@ -28,7 +28,7 @@ Create Table players(
   playerAlive int DEFAULT 1,
   PRIMARY KEY (`playerID`),
   KEY teamID (teamID),
-  CONSTRAINT players_ibfk_1 FOREIGN KEY (teamID) REFERENCES teams (teamID) 
+  CONSTRAINT players_ibfk_1 FOREIGN KEY (teamID) REFERENCES teams (teamID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 
@@ -45,8 +45,8 @@ CREATE TABLE playerItemPurchases(
     playerID int NOT NULL,
     itemID int NOT NULL,
     PRIMARY KEY (ID),
-    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID),
-    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID)
+    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE CASCADE,
+    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE playerInventories(
@@ -61,7 +61,7 @@ CREATE TABLE playerInventories(
     rifelAmmo int DEFAULT 0,
     xpPoints int DEFAULT 0,
     PRIMARY KEY (ID),
-    CONSTRAINT playerInventories_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID)
+    CONSTRAINT playerInventories_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 
