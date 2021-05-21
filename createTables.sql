@@ -21,9 +21,9 @@ Create Table players(
   fname varchar(255) NOT NULL,
   lname varchar(255) NOT NULL,
 --  if using default can we use not null then?
-  vbucks int NOT NULL DEFAULT '0',
+  vbucks int DEFAULT '0',
     --  level a reserved word?
-  level int NOT NULL DEFAULT '1',
+  level int DEFAULT '1',
   teamID int NOT NULL,
   playerAlive int DEFAULT 1,
   PRIMARY KEY (`playerID`),
@@ -42,11 +42,11 @@ CREATE TABLE itemShops(
 
 CREATE TABLE playerItemPurchases(
     ID int AUTO_INCREMENT,
-    playerID int NOT NULL,
-    itemID int NOT NULL,
+    playerID int,
+    itemID int,
     PRIMARY KEY (ID),
-    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE CASCADE,
-    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID) ON DELETE CASCADE
+    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE SET NULL,
+    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE playerInventories(
