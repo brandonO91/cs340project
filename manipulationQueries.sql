@@ -5,7 +5,9 @@ VALUES
 (~fname, ~lname, ~vBucks, ~level, ~teamID, ~playerAlive);
 
 -- get a single players data for the Update Player form
-SELECT playerID, fname, lname, vBucks, level, teamID  FROM players WHERE playerID = ~playerID_from_dropdown_Input
+SELECT playerID, fname, lname, vBucks, level, teamID
+FROM players
+WHERE playerID = ~playerID_from_dropdown_Input;
 
 
 -- update a players's info data based on submission of the Update Player form
@@ -16,7 +18,7 @@ WHERE playerID = ~playerID_from_dropdown_Input;
 --  PLAYER ITEM PURCHASES PAGE  --
 INSERT INTO playerItemPurchases (playerID, itemID) 
 VALUES 
-(~playerID, ~itemID)
+(~playerID, ~itemID);
 
 --  TEAMS PAGE  --
 --add a team
@@ -25,7 +27,8 @@ VALUES
 (~title);
 
 --delete a team
-DELETE FROM teams WHERE teamID = ~teamID;
+DELETE FROM teams 
+WHERE teamID = ~teamID;
 
 --  ITEMS PAGE  --
 INSERT INTO itemShops (itemName, itemDescription, vBuckCost)

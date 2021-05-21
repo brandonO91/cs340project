@@ -66,11 +66,11 @@ CREATE TABLE playerInventories(
 
 
 --  POPULATING TABLES WITH DATA  ----------------------------
-INSERT INTO teams (teamID, title)
+INSERT INTO teams (title)
 VALUES
-(0, 'TEAM DETECTIVE'),
-(1, 'Leg Lockers'),
-(3, '4D');
+('TEAM DETECTIVE'),
+('Leg Lockers'),
+('4D');
 
 INSERT INTO players (fname, lname, vBucks, level, teamID, playerAlive)
 VALUES
