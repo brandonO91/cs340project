@@ -27,5 +27,24 @@ module.exports = function(){
         }
     });
 
+    /* Adds an item, redirects to the items page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body.itemID)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO itemShops (itemName, itemDescription, vBuckCost) VALUES (?,?,?)";
+        var inserts = [req.body.itemName, req.body.itemDescription, req.body.vBuckCost];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/itemShops');
+            }
+        });
+    });
+
     return router;
 }();

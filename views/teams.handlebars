@@ -35,10 +35,10 @@
 
 <h1>Teams Table</h1>
 
-<form action="" method="POST">
-        <!-- pk will be auto generated -->
+<form id="addteam" action="/teams" method="post">
+    <!-- pk will be auto generated -->
         <label for="title">TEAM NAME:</label>
-        <input type="text" id="title" name="title"><br>
+        <input type="text" name="title"><br>
         <input type="submit" value="SUBMIT TEAM">
 </form><br>
 
@@ -55,7 +55,7 @@
         </tr> 
         {{/each}} 
     </tbody> 
-</table> 
+</table><br> 
 
 <form action="" method="POST">
         <!-- pk will be auto generated -->

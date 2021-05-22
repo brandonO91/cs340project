@@ -27,5 +27,24 @@ module.exports = function(){
         }
     });
 
+        /* Adds a team, redirects to the teams page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body.title)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO teams (title) VALUES (?)";
+        var inserts = [req.body.title];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/teams');
+            }
+        });
+    });
+
     return router;
 }();

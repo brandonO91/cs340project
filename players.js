@@ -8,7 +8,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.players = results;
+            context.getPlayers = results;
             complete();
         });
     }
@@ -19,7 +19,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.teams = results;
+            context.getTeams = results;
             complete();
         });
     }
@@ -28,14 +28,34 @@ module.exports = function(){
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
+        getTeams(res, mysql, context, complete);
         getPlayers(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('players', context);
             }
 
         }
+    });
+
+    /* Adds a player, redirects to the player page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body.fname)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO players (fname, lname, vbucks, level, teamID) VALUES (?,?,?,?,?)";
+        var inserts = [req.body.fname, req.body.lname, req.body.vbucks, req.body.level, req.body.teamID];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/players');
+            }
+        });
     });
 
     return router;

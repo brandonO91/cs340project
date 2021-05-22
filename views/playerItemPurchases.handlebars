@@ -36,66 +36,62 @@
 <h1>Player Item Purchases Table</h1>
     <h2>Will provide an overview of purchases made by each player</h2>
 
-    <form action="" method="POST">
+    <form id="addpurchase" action="/playerItemPurchases" method="post">
         <!-- pk will be auto generated -->
         <label for="">ADD PURCHASE:</label><br>
         <label for="playerID">Player ID:</label>
-        <input type="number" id="playerID" name="playerID"><br>
+        <select name="playerID">       
+        {{#each getPlayers}}
+        <option value="{{playerID}}">{{playerID}}</option>
+        {{/each}}
+        </select><br>
         <label for="itemID">Item ID:</label>
-        <input type="number" id="itemID" name="itemID"><br>
+        <select name="itemID">       
+        {{#each getItems}}
+        <option value="{{itemID}}">{{itemID}}</option>
+        {{/each}}
+        </select><br>
         <input type="submit" value="SUBMIT PURCHASE">
     </form><br>
     <table>
       <!-- tried adding caption but added to bottom of table... -->
       <!-- <caption>Items Player Has Purchased:</caption> -->
-      <tr>
-        <th>First Name</th>
+
+    <tbody>
+    <thead> 
+        <th>First Name</th> 
         <th>Last Name</th>
-        <th>Item Name</th>
-      </tr>
-      <tr>
-        <td>Lucifer</td>
-        <td>Morningstart</td>
-        <td>Wood</td>
-      </tr>
-      <tr>
-        <td>Lucifer</td>
-        <td>Morningstar</td>
-        <td>Mechanical Parts</td>
-      </tr>
-      <tr>
-        <td>Lachlan</td>
-        <td>Giles</td>
-        <td>Shotgun Ammo</td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-          <th>Player ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>vBucks</th>
-      </tr>
-      <tr>
-          <td>1</td>
-          <td>Lucifer</td>
-          <td>Morningstart</td>
-          <td>10000</td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>Lachlan</td>
-          <td>Giles</td>
-          <td>50000</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>Jesscia</td>
-          <td>Day</td>
-          <td>0</td>
-      </tr>
-    </table>
+        <th>Item Name</th>  
+    </thead> 
+        {{#each getPurchases}} 
+        <tr> 
+            <td>{{fname}}</td> 
+            <td>{{lname}}</td> 
+            <td>{{itemName}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+    </table>   
     
+    <table>
+    <thead> 
+        <th>Player ID</th> 
+        <th>First Name</th> 
+        <th>Last Name</th>
+        <th>vBucks</th>  
+    </thead> 
+    <tbody>
+        {{#each getPlayers}} 
+        <tr> 
+            <td>{{playerID}}</td> 
+            <td>{{fname}}</td> 
+            <td>{{lname}}</td> 
+            <td>{{vbucks}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+    </table>
+
     <table>
     <thead> 
         <th>ID</th> 
@@ -104,7 +100,7 @@
         <th>Cost</th>  
     </thead> 
     <tbody>
-        {{#each playerItemPurchases}} 
+        {{#each getItems}} 
         <tr> 
             <td>{{itemID}}</td> 
             <td>{{itemName}}</td> 
