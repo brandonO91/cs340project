@@ -24,7 +24,8 @@ Create Table players(
   vbucks int DEFAULT '0',
     --  level a reserved word?
   level int DEFAULT '1',
-  teamID int NOT NULL,
+  --  teamID int NOT NULL,
+  teamID int,
   playerAlive int DEFAULT 1,
   PRIMARY KEY (`playerID`),
   KEY teamID (teamID),
