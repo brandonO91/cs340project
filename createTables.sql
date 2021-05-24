@@ -74,8 +74,8 @@ VALUES
 
 INSERT INTO players (fname, lname, vBucks, level, teamID, playerAlive)
 VALUES
-('Lucifer', 'Morningstart', NULL, 1000, 1, 1),
-('Jessica', 'Day', 0, 0, 0, 0),
+('Lucifer', 'Morningstart', 9, 1000, 1, 1),
+('Jessica', 'Day', 0, 0, 2, 0),
 ('Lachlan', 'Giles', 160, 5050, 3, 1);
 
 INSERT INTO itemShops (itemName, itemDescription, vBuckCost)
