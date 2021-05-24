@@ -33,30 +33,21 @@
       </div>
     </nav>
 
-<h1>Teams Table</h1>
-
-<form id="addteam" action="/teams" method="post">
-    <!-- pk will be auto generated -->
-        <label for="title">TEAM NAME:</label>
-        <input type="text" name="title"><br>
-        <input type="submit" value="SUBMIT TEAM">
-</form><br>
-
-<table>
-    <thead> 
-        <th>Team ID</th> 
-        <th>Team Name</th> 
-    </thead> 
-    <tbody>
-        {{#each teams}} 
-        <tr> 
-            <td>{{id}}</td> 
-            <td>{{title}}</td>
-            <td><button onclick="deleteTeam({{id}})">Delete</button></td> 
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table><br> 
+<form id="update-player" action="/players" method="post">
+    <label for="">UPDATE PLAYER:</label><br>
+    First name: <input type="text" name="fname" value="{{getPlayer.fname}}"><br>
+    Last name: <input type="text" name="lname" value="{{getPlayer.lname}}"><br>
+    VBucks: <input type="number" name="vbucks" value="{{getPlayer.vbucks}}"><br>
+    Level: <input type="number" name="level" value="{{getPlayer.level}}"><br>
+    Team: <select name="teamID">
+    {{#each getTeams}}
+        <option value="{{id}}">{{title}}</option>
+    {{/each}}
+    </select><br>
+    Still Kickin?: <input type="number" name="playerAlive" value="{{getPlayer.playerAlive}}"><br>
 
 
+<button onclick="updatePlayer({{getPlayer.id}})">Update</button>
+<script defer>selectTeam({{getPlayer.teamID}});</script>
+</form>
 </html>

@@ -58,29 +58,6 @@
         <input type="submit" value="SUBMIT PLAYER">
     </form><br>
 
-    <form action="" method="POST">
-        <!-- pk will be auto generated -->
-        <label for="">UPDATE PLAYER:</label><br>
-        <label for="playerID">Players ID:</label>
-        <input type="number" name="playerID" id="playerID"><br>
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname"><br>
-        <label for="vBuckQty">VBucks:</label>
-        <input type="number" id="vBuckQty" name="vBuckQty"><br>
-        <label for="level">Level:</label>
-        <input type="number" id="level" name="level"><br>
-        <label for="teamID">Team:</label>
-        <input type="number" id="teamID" name="teamID"><br>
-        <label for="playerAlive">Still kickin'?:</label>
-        <input type="radio" id="playerAlive-true" name="playerAlive-true">
-        <label for="playerAlive-true">Yes</label>
-        <input type="radio" id="playerAlive-false" name="playerAlive-false">
-        <label for="playerAlive-false">No</label><br>
-        <input type="submit" value="SUBMIT CHANGES">
-    </form><br>
-
 <table>
     <thead> 
         <th>Team ID</th> 
@@ -89,12 +66,11 @@
     <tbody>
         {{#each getTeams}} 
         <tr> 
-            <td>{{teamID}}</td> 
+            <td>{{id}}</td> 
             <td>{{title}}</td> 
         </tr> 
         {{/each}} 
     </tbody> 
-
 </table> 
 
 
@@ -111,16 +87,18 @@
     <tbody>
         {{#each getPlayers}} 
         <tr> 
-            <td>{{playerID}}</td> 
+            <td>{{id}}</td> 
             <td>{{fname}}</td> 
             <td>{{lname}}</td> 
             <td>{{vbucks}}</td>
             <td>{{level}}</td> 
             <td>{{teamID}}</td> 
-            <td>{{playerAlive}}</td> 
+            <td>{{playerAlive}}</td>
+            <td><button onclick="deletePlayer({{id}})">Delete</button></td>
+            <td><a href="/players/{{id}}"><button>Update</button></a></td> 
         </tr> 
         {{/each}} 
-    </tbody> 
+    </tbody>
 
-</table> 
+</table><br><br>
 </html>
