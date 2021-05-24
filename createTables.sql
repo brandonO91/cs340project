@@ -28,7 +28,7 @@ Create Table players(
   playerAlive int DEFAULT 1,
   PRIMARY KEY (`playerID`),
   KEY teamID (teamID),
-  CONSTRAINT players_ibfk_1 FOREIGN KEY (teamID) REFERENCES teams (teamID) ON DELETE CASCADE
+  CONSTRAINT players_ibfk_1 FOREIGN KEY (teamID) REFERENCES teams (teamID) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 
@@ -45,8 +45,8 @@ CREATE TABLE playerItemPurchases(
     playerID int,
     itemID int,
     PRIMARY KEY (ID),
-    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE SET NULL,
-    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID) ON DELETE SET NULL
+    CONSTRAINT playerItemPurchases_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE CASCADE,
+    CONSTRAINT playersItemPurchases_fk_2 FOREIGN KEY (itemID) REFERENCES itemShops(itemID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE playerInventories(
@@ -74,7 +74,7 @@ VALUES
 
 INSERT INTO players (fname, lname, vBucks, level, teamID, playerAlive)
 VALUES
-('Lucifer', 'Morningstart', 9, 1000, 1, 1),
+('Lucifer', 'Morningstart', NULL, 1000, 1, 1),
 ('Jessica', 'Day', 0, 0, 2, 0),
 ('Lachlan', 'Giles', 160, 5050, 3, 1);
 
@@ -85,4 +85,3 @@ VALUES
 ('Mechanical Parts', 'Things to be a real engineer', 50);
 
 --  Last two tables would populate themselves with auto queries/ajax calls on page?
-
