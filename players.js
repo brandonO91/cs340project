@@ -57,6 +57,8 @@ module.exports = function(){
     /* Adds a player, redirects to the player page after adding */
 
     router.post('/', function(req, res){
+        // test
+        // console.log("inserted")
         console.log(req.body.fname)
         console.log(req.body)
         var mysql = req.app.get('mysql');
@@ -94,6 +96,8 @@ module.exports = function(){
     /* The URI that update data is sent to in order to update a player */
 
     router.put('/:id', function(req, res){
+        // test
+        // console.log("Being updated")
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
@@ -131,3 +135,4 @@ module.exports = function(){
 
     return router;
 }();
+
