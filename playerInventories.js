@@ -13,17 +13,47 @@ module.exports = function(){
         });
     }
 
+    function getPlayers(res, mysql, context, complete){
+        mysql.pool.query("SELECT playerID as id, fname, lname FROM players", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.getPlayers = results;
+            complete();
+        });
+    }
+
+//  -----  RENDERING PAGE WITH AUTO FILL  -----
+
+    // router.get('/', function(req, res){
+    //     var callbackCount = 0;
+    //     var context = {};
+    //     var mysql = req.app.get('mysql');
+    //     getItems(res, mysql, context, complete);
+    //     function complete(){
+    //         callbackCount++;
+    //         if(callbackCount >= 1){
+    //             res.render('playerInventories', context);
+    //         }
+
+    //     }
+    // });
+
+
+//  -----  ROUTER TO RENDER PAGE WITH FORM TO ADD AND FORM TO REQUEST  -----
+
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        getItems(res, mysql, context, complete);
+        getPlayers(res, mysql, context, complete);
+        // getItems(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('playerInventories', context);
+        res.render('playerInventories', context);
             }
-
         }
     });
 
