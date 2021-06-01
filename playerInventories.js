@@ -57,6 +57,10 @@ module.exports = function(){
         }
     });
 
+    router.get('/tinker', function(req, res){
+        res.send('create a seperate get router with body params')
+    })
+
     router.post('/', function(req, res){
         console.log(req.body.fname)
         console.log(req.body)
@@ -76,5 +80,3 @@ module.exports = function(){
 
     return router;
 }();
-
-
