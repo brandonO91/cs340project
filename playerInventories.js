@@ -48,7 +48,6 @@ module.exports = function(){
         var context = {};
         var mysql = req.app.get('mysql');
         getPlayers(res, mysql, context, complete);
-        // getItems(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
@@ -56,6 +55,14 @@ module.exports = function(){
             }
         }
     });
+
+    // seperate router for when putting in request
+    router.get('/search', function(req, res){
+        console.log(req.query)
+        var callback = 0
+        var context = {}
+        // res.send("received")
+    })
 
     router.get('/tinker', function(req, res){
         res.send('create a seperate get router with body params')
@@ -80,3 +87,5 @@ module.exports = function(){
 
     return router;
 }();
+
+
