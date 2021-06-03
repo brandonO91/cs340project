@@ -2,13 +2,28 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getItems(res, mysql, context, complete){
-        mysql.pool.query("SELECT playerID, health, medKit, shield, shieldPotion, shotgun, shotgunAmmo, rifelAmmo, xpPoints FROM playerInventories", function(error, results, fields){
+    //  ------------  ORIGINAL
+    // function getItems(res, mysql, context, complete){
+    //     mysql.pool.query("SELECT playerID, health, medKit, shield, shieldPotion, shotgun, shotgunAmmo, rifelAmmo, xpPoints FROM playerInventories", function(error, results, fields){
+    //         if(error){
+    //             res.write(JSON.stringify(error));
+    //             res.end();
+    //         }
+    //         context.playerInventories = results;
+    //         complete();
+    //     });
+    // }
+
+    function getInventories(req, mysql, context, complete){
+        console.log("searching")
+        var sql = "SELECT * FROM playerInventories WHERE ID LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifelAmmo < ? or xpPoints < ?;";
+        var inserts = [req.query.playerID, req.query.health, req.query.medKit, req.query.shield, req.query.shieldPotion, req.query.shotgun, req.query.shotgunAmmo, req.query.rifle, req.query.rifelAmmo, req.query.xpPoints];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.playerInventories = results;
+            context.getInventories = results;
             complete();
         });
     }
@@ -63,8 +78,13 @@ module.exports = function(){
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        var sql = "SELECT * FROM playerInventories WHERE ID LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifelAmmo < ? or xpPoints < ?;"
+        // var sql = "SELECT * FROM playerInventories WHERE ID LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifelAmmo < ? or xpPoints < ?;";
+        // var inserts = [req.query.playerID, req.query.health, req.query.medKit, req.query.shield, req.query.shieldPotion, req.query.shotgun, req.query.shotgunAmmo, req.query.rifle, req.query.rifelAmmo, req.query.xpPoints];
         getPlayers(res, mysql, context, complete);
+        getInventories(req, mysql, context, complete)
+        console.log("players and inventories returned")
+        console.log(context.getPlayers)
+        console.log(context.getInventories)
         // res.send('working on it')
         //  need to pass in query
         // getItems(res, mysql, context, complete);
@@ -81,6 +101,7 @@ module.exports = function(){
     })
 
     router.post('/', function(req, res){
+        console.log("post received")
         console.log(req.body.fname)
         console.log(req.body)
         var mysql = req.app.get('mysql');
