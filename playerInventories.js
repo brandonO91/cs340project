@@ -31,9 +31,10 @@ module.exports = function(){
     //     var context = {};
     //     var mysql = req.app.get('mysql');
     //     getItems(res, mysql, context, complete);
+    //     getPlayers(res, mysql, context, complete);
     //     function complete(){
     //         callbackCount++;
-    //         if(callbackCount >= 1){
+    //         if(callbackCount >= 2){
     //             res.render('playerInventories', context);
     //         }
 
@@ -59,19 +60,20 @@ module.exports = function(){
     // seperate router for when putting in request
     router.get('/search', function(req, res){
         console.log(req.query)
-        var callback = 0;
+        var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        // getPlayers(res, mysql, context, complete);
-        res.send('working on it')
+        var sql = "SELECT * FROM playerInventories WHERE ID LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifelAmmo < ? or xpPoints < ?;"
+        getPlayers(res, mysql, context, complete);
+        // res.send('working on it')
         //  need to pass in query
-        getItems(res, mysql, context, complete);
-        // function complete(){
-        //     callbackCount++;
-        //     if (callbackCount >= 1) {
-        //         res.render('playerInventories', context)
-        //     }
-        // }
+        // getItems(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if (callbackCount >= 2) {
+                res.render('playerInventories', context)
+            }
+        }
     })
 
     router.get('/tinker', function(req, res){
@@ -90,7 +92,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/playerInvetories');
+                res.redirect('/playerInventories');
             }
         });
     });
