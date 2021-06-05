@@ -59,7 +59,8 @@ CREATE TABLE playerInventories(
     shieldPotion int DEFAULT 0,
     shotgun int DEFAULT 0,
     shotgunAmmo int DEFAULT 0,
-    rifelAmmo int DEFAULT 0,
+    rifle int DEFAULT 0,
+    rifleAmmo int DEFAULT 0,
     xpPoints int DEFAULT 0,
     PRIMARY KEY (ID),
     CONSTRAINT playerInventories_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE CASCADE

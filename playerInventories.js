@@ -105,8 +105,8 @@ module.exports = function(){
         console.log(req.body.fname)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO playerInventories () VALUES (?)";
-        var inserts = [req.body.fname, req.body.lname, req.body.vbucks, req.body.level, req.body.teamID];
+        var sql = "INSERT INTO playerInventories (playerID, health, medKit, shield, shieldPotion, shotgun, shotgunAmmo, rifle, rifleAmmo, xpPoints) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        var inserts = [req.body.playerID, req.body.health, req.body.medkit, req.body.shield, req.body.shieldPotion, req.body.shotgun, req.body.shotgunAmmo, req.body.rifle, req.body.rifleAmmo, req.body.xpPoints];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
