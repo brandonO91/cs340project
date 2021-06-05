@@ -112,9 +112,11 @@
         <th>XP Points</th> 
     </thead> 
     <tbody>
-        {{#each playerInventories}} 
+        {{#each getInventories}} 
         <tr> 
-            <td>{{playerID}}</td> 
+            <td>{{playerID}}</td>
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>
             <td>{{health}}</td> 
             <td>{{medKit}}</td> 
             <td>{{shield}}</td>
