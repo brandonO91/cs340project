@@ -16,17 +16,24 @@ module.exports = function(){
 
     function getInventories(req, res, mysql, context, complete){
         console.log("searching")
-        console.log(req.query)
-        var sql = "SELECT players.playerID, players.fname, players.lname, playerInventories.health, playerInventories.medKit, playerInventories.shield, playerInventories.shieldPotion, playerInventories.shotgun, playerInventories.shotgunAmmo, playerInventories.rifle, playerInventories.rifleAmmo, playerInventories.xpPoints  FROM playerInventories INNER JOIN players ON playerInventories.playerID = players.playerID  WHERE ID LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifleAmmo < ? or xpPoints < ?;";
+        console.log(req.query);
+        if (req.query.playerID != '') {
+            value = req.query.playerID;
+            value = value + '%';
+            req.query.playerID = value;
+        }
+        var sql = "SELECT players.playerID, players.fname, players.lname, playerInventories.health, playerInventories.medKit, playerInventories.shield, playerInventories.shieldPotion, playerInventories.shotgun, playerInventories.shotgunAmmo, playerInventories.rifle, playerInventories.rifleAmmo, playerInventories.xpPoints  FROM playerInventories INNER JOIN players ON playerInventories.playerID = players.playerID  WHERE players.fname LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifleAmmo < ? or xpPoints < ?;";
+        // var sql = "SELECT players.playerID, players.fname, players.lname, playerInventories.health, playerInventories.medKit, playerInventories.shield, playerInventories.shieldPotion, playerInventories.shotgun, playerInventories.shotgunAmmo, playerInventories.rifle, playerInventories.rifleAmmo, playerInventories.xpPoints  FROM playerInventories INNER JOIN players ON playerInventories.playerID = players.playerID  WHERE ID LIKE ? OR health < ? OR medKit < ? OR shield < ? OR shieldPotion < ? OR shotgun < ? OR shotgunAmmo < ? OR rifleAmmo < ? or xpPoints < ?;";
         var inserts = [req.query.playerID, req.query.health, req.query.medkit, req.query.shield, req.query.shieldPotion, req.query.shotgun, req.query.shotgunAmmo, req.query.rifle, req.query.rifelAmmo, req.query.xpPoints];
+
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log('error in searching')
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            console.log(results)
-            console.log('adding to context')
+            console.log(results);
+            console.log('adding to context');
             context.getInventories = results;
             // console.log(context.getInventories)
             complete();
