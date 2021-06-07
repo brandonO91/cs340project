@@ -66,6 +66,15 @@ CREATE TABLE playerInventories(
     CONSTRAINT playerInventories_fk_1 FOREIGN KEY (playerID) REFERENCES players(playerID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+DELIMITER $$
+CREATE TRIGGER new_player_added 
+AFTER INSERT ON players
+FOR EACH ROW 
+BEGIN 
+  SET @playerID = (SELECT MAX(playerID) FROM players);
+  INSERT INTO playerInventories (playerID) VALUE (@playerID);
+END $$
+DELIMITER ;
 
 --  POPULATING TABLES WITH DATA  ----------------------------
 INSERT INTO teams (title)
@@ -86,4 +95,10 @@ VALUES
 ('Shot Gun Ammo', 'Fun-munition', 25),
 ('Mechanical Parts', 'Things to be a real engineer', 50);
 
---  Last two tables would populate themselves with auto queries/ajax calls on page?
+INSERT INTO `playerItemPurchases` (`ID`, `playerID`, `itemID`) 
+VALUES 
+(NULL, 1, 3),
+(NULL, 2, 2),
+(NULL, 3, 1);
+
+
